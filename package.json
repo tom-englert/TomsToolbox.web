@@ -2,10 +2,16 @@
   "name": "tomstoolbox.web",
   "version": "0.0.1",
   "description": "A set of core functions and classes to ease every days web development tasks",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "npm run build",
+    "build": "tsc",
+    "test": "jest"
   },
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tom-englert/TomsToolbox.web.git"
@@ -19,7 +25,20 @@
     "url": "https://github.com/tom-englert/TomsToolbox.web/issues"
   },
   "homepage": "https://github.com/tom-englert/TomsToolbox.web#readme",
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "testRegex": "^.+\\.spec\\.ts$"
+  },
   "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "jest": "^26.0.1",
+    "ts-jest": "^25.4.0",
     "typescript": "^3.8.3"
   }
 }
