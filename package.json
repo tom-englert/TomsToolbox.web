@@ -1,0 +1,25 @@
+{
+  "name": "tomstoolbox.web",
+  "version": "0.0.1",
+  "description": "A set of core functions and classes to ease every days web development tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tom-englert/TomsToolbox.web.git"
+  },
+  "keywords": [
+    "ADDKEYWORDS"
+  ],
+  "author": "tom-englert",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tom-englert/TomsToolbox.web/issues"
+  },
+  "homepage": "https://github.com/tom-englert/TomsToolbox.web#readme",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
+}
