@@ -1,16 +1,16 @@
 {
-  "name": "tomstoolbox.web",
+  "name": "@toms-toolbox/essentials",
   "version": "0.0.1",
   "description": "A set of core functions and classes to ease every days web development tasks",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "prepare": "npm run build",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest --verbose ./spec"
   },
   "files": [
-    "lib"
+    "dist"
   ],
   "repository": {
     "type": "git",
