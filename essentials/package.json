@@ -1,5 +1,5 @@
 {
-  "name": "@toms-toolbox/!!TODO!!",
+  "name": "@toms-toolbox/essentials",
   "version": "0.0.1",
   "description": "A set of core functions and classes to ease every days web development tasks",
   "main": "dist/index.js",
