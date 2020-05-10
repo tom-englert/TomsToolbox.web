@@ -1,8 +1,8 @@
-const ticksPerMillisecond: number = 10000;
-const ticksPerSecond: number = 10000000;
-const ticksPerMinute: number = 600000000;
-const ticksPerHour: number = 36000000000;
-const ticksPerDay: number = 864000000000;
+export const ticksPerMillisecond: number = 1;
+export const ticksPerSecond: number = 1000;
+export const ticksPerMinute: number = 60000;
+export const ticksPerHour: number = 3600000;
+export const ticksPerDay: number = 86400000;
 
 function toNumberOrDefault(input: number | string | undefined): number {
     const n = Number(input);
@@ -16,8 +16,8 @@ function to2Digits(n: number) {
     return ('00' + n).slice(-2);
 }
 
-function to7Digits(n: number) {
-    return ('0000000' + n).slice(-7);
+function to3Digits(n: number) {
+    return ('000' + n).slice(-3);
 }
 
 /**
@@ -27,13 +27,12 @@ export class TimeSpan {
 
     readonly ticks: number;
 
-    constructor(ticks: number, milliseconds?: number, seconds?: number | string, minutes?: number | string, hours?: number | string, days?: number | string) {
-        ticks += toNumberOrDefault(days) * ticksPerDay;
-        ticks += toNumberOrDefault(hours) * ticksPerHour;
-        ticks += toNumberOrDefault(minutes) * ticksPerMinute;
-        ticks += toNumberOrDefault(seconds) * ticksPerSecond;
-        ticks += toNumberOrDefault(milliseconds) * ticksPerMillisecond;
-        this.ticks = Math.round(ticks);
+    constructor(milliseconds: number, seconds?: number | string, minutes?: number | string, hours?: number | string, days?: number | string) {
+        milliseconds += toNumberOrDefault(days) * ticksPerDay;
+        milliseconds += toNumberOrDefault(hours) * ticksPerHour;
+        milliseconds += toNumberOrDefault(minutes) * ticksPerMinute;
+        milliseconds += toNumberOrDefault(seconds) * ticksPerSecond;
+        this.ticks = Math.round(milliseconds);
     }
 
     add(other: TimeSpan): TimeSpan {
@@ -145,7 +144,7 @@ export class TimeSpan {
             text += ':' + to2Digits(Math.floor(seconds));
             const fraction = ticks % ticksPerSecond;
             if (fraction > 0) {
-                text += '.' + to7Digits(Math.floor(fraction));
+                text += '.' + to3Digits(Math.floor(fraction));
             }
         }
 
@@ -153,24 +152,24 @@ export class TimeSpan {
     }
 
     static FromSeconds(seconds: string | number): TimeSpan {
-        return new TimeSpan(0, 0, seconds, 0, 0, 0);
+        return new TimeSpan(0, seconds, 0, 0, 0);
     }
 
     static FromMinutes(minutes: string | number): TimeSpan {
-        return new TimeSpan(0, 0, 0, minutes, 0, 0);
+        return new TimeSpan(0, 0, minutes, 0, 0);
     }
 
     static FromHours(hours: string | number): TimeSpan {
-        return new TimeSpan(0, 0, 0, 0, hours, 0);
+        return new TimeSpan(0, 0, 0, hours, 0);
     }
 
     static FromDays(days: string | number): TimeSpan {
-        return new TimeSpan(0, 0, 0, 0, 0, days);
+        return new TimeSpan(0, 0, 0, 0, days);
     }
 
     static FromDates(firstDate: Date | number | string, secondDate: Date | number | string): TimeSpan {
         let differenceMsecs = new Date(secondDate).valueOf() - new Date(firstDate).valueOf();
-        return new TimeSpan(0, differenceMsecs, 0, 0, 0, 0);
+        return new TimeSpan(differenceMsecs, 0, 0, 0, 0);
     }
 
     static ParseExact(value: string | TimeSpan | number | undefined): TimeSpan | undefined {
@@ -195,10 +194,10 @@ export class TimeSpan {
         let tokens = text.split(':');
         let days = tokens[0].split('.');
         if (days.length == 2) {
-            return new TimeSpan(0, 0, tokens[2], tokens[1], days[1], days[0]);
+            return new TimeSpan(0, tokens[2], tokens[1], days[1], days[0]);
         }
 
-        return new TimeSpan(0, 0, tokens[2], tokens[1], tokens[0], 0);
+        return new TimeSpan(0, tokens[2], tokens[1], tokens[0], 0);
     }
 
     static Parse(value: string | TimeSpan | number | undefined): TimeSpan {

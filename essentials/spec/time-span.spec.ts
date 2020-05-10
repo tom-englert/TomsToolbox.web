@@ -33,10 +33,10 @@ describe('TimeSpan', () => {
         expect((TimeSpan.Parse('1:30')).toString()).toBe('01:30');
         expect((TimeSpan.Parse('1.1:30')).toString()).toBe('1.01:30');
         expect((TimeSpan.Parse('01.01:30')).toString()).toBe('1.01:30');
-        expect((TimeSpan.Parse('2.12:15:10.200')).toString()).toBe('2.12:15:10.2000000');
-        expect((TimeSpan.Parse('2.12:15:10.030')).toString()).toBe('2.12:15:10.0300000');
-        expect((TimeSpan.Parse('1:30:05.5')).toString()).toBe('01:30:05.5000000');
-        expect((TimeSpan.Parse('1:3:05.5')).toString()).toBe('01:03:05.5000000');
+        expect((TimeSpan.Parse('2.12:15:10.200')).toString()).toBe('2.12:15:10.200');
+        expect((TimeSpan.Parse('2.12:15:10.030')).toString()).toBe('2.12:15:10.030');
+        expect((TimeSpan.Parse('1:30:05.5')).toString()).toBe('01:30:05.500');
+        expect((TimeSpan.Parse('1:3:05.5')).toString()).toBe('01:03:05.500');
         expect((TimeSpan.Parse('300:05')).toString()).toBe('12.12:05');
     });
 
@@ -50,10 +50,10 @@ describe('TimeSpan', () => {
         expect((TimeSpan.FromDays(1.5)).toString()).toBe('1.12:00');
         expect((TimeSpan.FromHours(1.5)).toString()).toBe('01:30');
         expect((TimeSpan.FromMinutes(20)).toString()).toBe('00:20');
-        expect((TimeSpan.FromMinutes(20.31459)).totalMilliseconds).toBe(1218875.4);
-        expect((TimeSpan.FromMinutes(20.31459)).toString()).toBe('00:20:18.8754000');
-        expect((TimeSpan.FromMinutes(0.01459)).toString()).toBe('00:00:00.8754000');
-        expect((TimeSpan.FromSeconds(20.06)).toString()).toBe('00:00:20.0600000');
+        expect((TimeSpan.FromMinutes(20.31459)).totalMilliseconds).toBe(1218875);
+        expect((TimeSpan.FromMinutes(20.31459)).toString()).toBe('00:20:18.875');
+        expect((TimeSpan.FromMinutes(0.01459)).toString()).toBe('00:00:00.875');
+        expect((TimeSpan.FromSeconds(20.06)).toString()).toBe('00:00:20.060');
     })
 
     it('Calculates', () => {
@@ -71,6 +71,6 @@ describe('TimeSpan', () => {
         expect(target.minutes).toBe(45);
         expect(target.seconds).toBe(43);
         expect(target.milliseconds).toBe(210);
-        expect(target.valueOf()).toBe(1719432100000);
+        expect(target.valueOf()).toBe(171943210);
     })
 });
