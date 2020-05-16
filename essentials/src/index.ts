@@ -8,5 +8,7 @@ export * from './object/normalize'
 export * from './object/object-cache'
 export * from './object/with-updated-values'
 
+export * from './intl.adapter'
+
 export * from './time-span'
 
