@@ -9,6 +9,7 @@ export * from './object/object-cache'
 export * from './object/with-updated-values'
 
 export * from './intl.adapter'
-
+export * from './relative-url'
+export * from './time-range'
 export * from './time-span'
 

@@ -6,7 +6,7 @@ class SomeClass {
 }
 
 describe('TimeSpan', () => {
-    it('Parses input', () => {
+    it('should parse input', () => {
         expect((TimeSpan.Parse('1:0')).totalHours).toBe(1);
         expect((TimeSpan.Parse('1:30')).totalHours).toBe(1.5);
         expect((TimeSpan.Parse('1.1:30')).totalHours).toBe(24 + 1.5);
@@ -28,7 +28,7 @@ describe('TimeSpan', () => {
         expect(TimeSpan.Parse(undefined).valueOf()).toBe(0);
     });
 
-    it('Formats output', () => {
+    it('should format output', () => {
         expect((TimeSpan.Parse('1:0')).toString()).toBe('01:00');
         expect((TimeSpan.Parse('1:30')).toString()).toBe('01:30');
         expect((TimeSpan.Parse('1.1:30')).toString()).toBe('1.01:30');
@@ -40,7 +40,7 @@ describe('TimeSpan', () => {
         expect((TimeSpan.Parse('300:05')).toString()).toBe('12.12:05');
     });
 
-    it('Constructs values', () => {
+    it('should construct values', () => {
         expect((TimeSpan.FromDates("2020-05-09T09:00", "2020-05-10T07:00")).toString()).toBe('22:00');
         expect((TimeSpan.FromDates("2020-05-09T09:00", "2020-05-10T07:20:10")).toString()).toBe('22:20:10');
         expect((TimeSpan.FromDates("2020-05-10T07:20:10", "2020-05-09T09:00")).toString()).toBe('-22:20:10');
@@ -56,7 +56,7 @@ describe('TimeSpan', () => {
         expect((TimeSpan.FromSeconds(20.06)).toString()).toBe('00:00:20.060');
     })
 
-    it('Calculates', () => {
+    it('should calculate', () => {
         expect((TimeSpan.FromMinutes(1).add(TimeSpan.FromHours(2))).toString()).toBe('02:01');
         expect((TimeSpan.FromMinutes(1).subtract(TimeSpan.FromHours(2))).toString()).toBe('-01:59');
         expect((TimeSpan.FromMinutes(1).negate()).toString()).toBe('-00:01');
@@ -64,7 +64,7 @@ describe('TimeSpan', () => {
         expect(TimeSpan.FromMinutes(1).dividedBy(3).equals(TimeSpan.FromSeconds(20))).toBe(true);
     })
 
-    it ('Deconstructs', () => {
+    it ('should disassemble objects', () => {
         const target = TimeSpan.Parse('1.23:45:43.21');
         expect(target.days).toBe(1);
         expect(target.hours).toBe(23);

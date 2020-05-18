@@ -2,8 +2,8 @@ import {withUpdatedValues} from "../src/object/with-updated-values";
 import {normalize} from "../src/object/normalize";
 import {ObjectCache} from "../src/object/object-cache";
 
-describe('Object', () => {
-    it('Updates immutable objects correctly', () => {
+describe('withUpdatedValues', () => {
+    it('should update immutable objects correctly', () => {
         const source = {
             a: 1,
             b: 2,
@@ -18,8 +18,8 @@ describe('Object', () => {
     });
 });
 
-describe('Normalize', () => {
-    it('works', () => {
+describe('normalize', () => {
+    it('should normalize objects', () => {
         const source = {
             a: 1,
             c: 3,
@@ -33,8 +33,8 @@ describe('Normalize', () => {
     });
 });
 
-describe('Object cache', () => {
-    it('returns the same object for the same parameters', () => {
+describe('ObjectCache', () => {
+    it('should return the same object for the same parameters', () => {
         let index = 1;
         const target = new ObjectCache((params: { key: string, value: string }) => params.key + ':' + params.value + ':' + index++);
 

@@ -1,4 +1,7 @@
+/* istanbul ignore file => test is browser-specific, runs in sample app */
+
 import DateTimeFormatOptions = Intl.DateTimeFormatOptions;
+import DateTimeFormatPart = Intl.DateTimeFormatPart;
 import {ObjectCache} from "./object/object-cache";
 
 class DateFormatterCache extends ObjectCache<Intl.DateTimeFormat, { locale: string | string[] | undefined, options: Intl.DateTimeFormatOptions }> {
@@ -47,24 +50,32 @@ export class IntlAdapter {
     readonly defaultLocaleId: string = (new Intl.NumberFormat()).resolvedOptions().locale;
 
     /**
-     * Adapter to the Intl.DateTimeFormat.
-     * See [DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) for details.
+     * Adapter to the Intl.DateTimeFormat.formatDate() method.
+     * See [DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat) for details.
      */
     formatDate(value: Date | number | string, locale: string | string[] | undefined, options: Intl.DateTimeFormatOptions): string {
         return this.dateFormatterCache.formatter(locale, options).format(new Date(value));
     }
 
     /**
-     * Adapter to the Intl.NumberFormat.
-     * See [NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat) for details.
+     * Adapter to the Intl.DateTimeFormat.formatDateToParts() method.
+     * See [DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat) for details.
+     */
+    formatDateToParts(value: Date | number | string, locale: string, options: Intl.DateTimeFormatOptions): DateTimeFormatPart[] {
+        return this.dateFormatterCache.formatter(locale, options).formatToParts(new Date(value));
+    }
+
+    /**
+     * Adapter to the Intl.NumberFormat.formatNumber() method.
+     * See [NumberFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat) for details.
      */
     formatNumber(value: number, locale: string | string[] | undefined, options: Intl.NumberFormatOptions): string {
         return this.numberFormatterCache.formatter(locale, options).format(value);
     }
 
     /**
-     * Adapter to the Intl.Collator.
-     * See [Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator) for details.
+     * Adapter to the Intl.Collator.compate() method.
+     * See [Collator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator) for details.
      */
     compare(x: string, y: string, locale: string | string[] | undefined, options: Intl.CollatorOptions): number {
         return this.collatorCache.collator(locale, options).compare(x, y);
@@ -103,8 +114,7 @@ export class IntlAdapter {
         };
 
         const effectiveOptions = this.overrideDefaults(defaultOptions, options);
-        const formatter = this.
-        dateFormatterCache.formatter(locale, effectiveOptions);
+        const formatter = this.dateFormatterCache.formatter(locale, effectiveOptions);
         const startParts: { type: string, value: string }[] = formatter.formatToParts(new Date(start));
         const endParts: { type: string, value: string }[] = formatter.formatToParts(new Date(end));
 
@@ -146,6 +156,88 @@ export class IntlAdapter {
         }
 
         return formatter.format(start) + '\u2013' + formatter.format(end);
+    }
+
+    /**
+     * Parses a numeric date string using the date rules of the specified culture.
+     * @param date: The date string to parse, e.g. 22
+     * @param locale: The locale to use for parsing.
+     * @param defaultValue: An optional default value used to fill the missing parts.
+     */
+    parseDate(date: string, locale: string, defaultValue?: Date): Date {
+        const pattern = this.formatDateToParts('3333-11-22', locale, {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric'
+        });
+
+        const delimiters = pattern
+            .filter(item => item.type === 'literal')
+            .map(item => IntlAdapter.normalize(item.value));
+
+        const types = pattern
+            .filter(item => item.type !== 'literal')
+            .map(item => item.type);
+
+        const parts = IntlAdapter.slice(IntlAdapter.normalize(date), delimiters);
+
+        let year = Number(parts[types.indexOf('year')] || -1);
+        let month = Number(parts[types.indexOf('month')] || -1);
+        let day = Number(parts[types.indexOf('day')] || -1);
+
+        if (isNaN(year) || year < 0) {
+            if (defaultValue) {
+                year = defaultValue.getFullYear();
+            } else {
+                return new Date(NaN);
+            }
+        }
+
+        if (isNaN(month) || month < 0) {
+            if (defaultValue) {
+                month = defaultValue.getMonth() + 1;
+            } else {
+                return new Date(NaN);
+            }
+        }
+
+        if (isNaN(day) || day < 0) {
+            if (defaultValue) {
+                day = defaultValue.getDate();
+            } else {
+                return new Date(NaN);
+            }
+        }
+
+        if (year < 100) {
+            year += 2000;
+        }
+
+        const result = new Date(year, month - 1, day);
+
+        return result;
+    }
+
+    private static normalize(str: string) {
+        // trim and also strip out unicode LTR and RTL characters.
+        return str.replace(/[\u200e\u200f]/g, '').trim();
+    }
+
+    private static slice(value: string, delimiters: string[]): string[] {
+        const result = [];
+
+        for (const delimiter of delimiters) {
+            const index = value.indexOf(delimiter);
+            if (index === -1) {
+                break;
+            }
+            const part = value.substr(0, index);
+            result.push(part);
+            value = value.substr(index + delimiter.length);
+        }
+
+        result.push(value);
+        return result;
     }
 
     private static compact(start: Date, startParts: { type: string; value: string }[], end: Date, endParts: { type: string; value: string }[]) {
@@ -192,8 +284,8 @@ export class IntlAdapter {
 
     private static isSameDay(day1: Date, day2: Date): boolean {
         return day1.getFullYear() === day2.getFullYear()
-        && day1.getMonth() === day2.getMonth()
-        && day1.getDate() === day2.getDate();
+            && day1.getMonth() === day2.getMonth()
+            && day1.getDate() === day2.getDate();
     }
 
     private static isSameYear(day1: Date, day2: Date): boolean {

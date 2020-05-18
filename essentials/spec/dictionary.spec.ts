@@ -16,14 +16,14 @@ const duplicate = {
     name: 'another second'
 }
 
-describe('Dictionary', () => {
-    it('Returns empty when params are undefined', () => {
+describe('toDictionary', () => {
+    it('should return an empty object when params are undefined', () => {
         const items: string[] = <string[]><any>undefined;
         const target = toDictionary(items, i => i);
         expect(JSON.stringify(target)).toBe('{}');
     });
 
-    it('Converts to dictionary', () => {
+    it('should transform items to a dictionary', () => {
         const target = toDictionary(items, item => item.id);
 
         expect(target['id1'].name).toBe('first');
@@ -32,7 +32,7 @@ describe('Dictionary', () => {
         expect(target['id4']).toBeUndefined();
     });
 
-    it('Ignores duplicates', () => {
+    it('should ignores duplicates', () => {
         const target = toDictionary(items.concat([duplicate]), item => item.id);
 
         expect(target['id1'].name).toBe('first');
@@ -41,7 +41,7 @@ describe('Dictionary', () => {
         expect(target['id4']).toBeUndefined();
     });
 
-    it('Updates immutable', () => {
+    it('should update immutable', () => {
         const source = toDictionary(items, item => item.id);
         const target = withDictionaryEntry(source, 'id2', duplicate);
 
@@ -50,14 +50,16 @@ describe('Dictionary', () => {
         expect(target['id2'].name).toBe('another second');
     });
 
-    it('Returns the same object when input did not change', () => {
+    it('should return the same object when input did not change', () => {
         const source = toDictionary(items, item => item.id);
         const target = withDictionaryEntry(source, 'id2', source['id2']);
 
         expect(source === target).toBe(true);
     });
+});
 
-    it('Flattens dictionary of arrays', () => {
+describe('flattenValues', () => {
+    it('should flatten a dictionary of arrays', () => {
         const source = {
             items1: [1, 2, 3],
             items2: [2, 3, 4],
