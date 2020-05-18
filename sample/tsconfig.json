@@ -1,7 +1,8 @@
 {
   "compileOnSave": false,
   "references": [
-    { "path": "../essentials/tsconfig.json", "prepend": true }
+    { "path": "../essentials/tsconfig.json" },
+    { "path": "../angular/tsconfig.json" }
   ],
   "compilerOptions": {
     "baseUrl": "./",
@@ -22,7 +23,8 @@
       "dom"
     ],
     "paths": {
-      "@tom-toolbox/essentials": ["../essentials/dist"]
+      "@tom-toolbox/essentials": ["../essentials/dist"],
+      "@tom-toolbox/angular": ["../angular/dist"]
     }
   },
   "angularCompilerOptions": {
