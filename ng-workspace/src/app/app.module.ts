@@ -1,14 +1,16 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {AngularModule, CultureService, IntlAdapterService} from "angular";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import {MatRippleModule} from "@angular/material/core";
+import {DateAdapter, MatNativeDateModule, MatRippleModule} from "@angular/material/core";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+
+import {AngularModule, CultureService, CustomDateAdapter, IntlAdapterService} from "angular";
 
 @NgModule({
   declarations: [
@@ -20,14 +22,17 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     BrowserAnimationsModule,
     FormsModule,
     MatButtonModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
+    MatDatepickerModule,
   ],
   providers: [
     IntlAdapterService,
     CultureService,
-    // {provide: DateAdapter, useClass: CustomDateAdapter}
+    {provide: LOCALE_ID, useValue: (new Intl.NumberFormat()).resolvedOptions().locale},
+    {provide: DateAdapter, useClass: CustomDateAdapter},
   ],
   bootstrap: [AppComponent]
 })
