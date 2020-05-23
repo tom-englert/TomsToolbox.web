@@ -8,6 +8,7 @@
     "prepare": "npm run build-ci",
     "build": "tsc",
     "build-ci": "rd dist /s /q | del tsconfig.tsbuildinfo | tsc",
+    "doc": "npx typedoc --out ../docs/essentials src",
     "test": "jest --verbose ./spec"
   },
   "files": [
