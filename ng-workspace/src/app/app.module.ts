@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -22,11 +22,11 @@ import {AngularModule, CultureService, CustomDateAdapter, IntlAdapterService} fr
     BrowserAnimationsModule,
     FormsModule,
     MatButtonModule,
-    MatNativeDateModule,
+    MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
+    MatNativeDateModule,
     MatRippleModule,
-    MatDatepickerModule,
   ],
   providers: [
     IntlAdapterService,
@@ -34,6 +34,7 @@ import {AngularModule, CultureService, CustomDateAdapter, IntlAdapterService} fr
     {provide: LOCALE_ID, useValue: (new Intl.NumberFormat()).resolvedOptions().locale},
     {provide: DateAdapter, useClass: CustomDateAdapter},
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule {
