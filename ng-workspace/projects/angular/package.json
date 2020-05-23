@@ -1,10 +1,24 @@
 {
   "name": "@toms-toolbox/angular",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "A set of angular classes to ease every days web development tasks",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tom-englert/TomsToolbox.web.git"
+  },
+  "keywords": [
+    "tools miscellaneous angular i18n"
+  ],
+  "author": "tom-englert",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tom-englert/TomsToolbox.web/issues"
+  },
+  "homepage": "https://github.com/tom-englert/TomsToolbox.web#readme",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",
     "@angular/material": "^7.2.0",
-    "@toms-toolbox/essentials": "^0.0.3"
+    "@toms-toolbox/essentials": "^1.0.0"
   }
 }

@@ -1,6 +1,4 @@
-rd essentials/dist /s /q
-del essentials/tsconfig.tsbuildinfo
-call npm --prefix essentials run build
+call npm --prefix essentials run build-ci
 if errorlevel 1 goto :error
 
 call npm --prefix ng-workspace run build angular

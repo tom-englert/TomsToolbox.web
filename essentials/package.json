@@ -1,12 +1,13 @@
 {
   "name": "@toms-toolbox/essentials",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "A set of core functions and classes to ease every days web development tasks",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "prepare": "npm run build",
+    "prepare": "npm run build-ci",
     "build": "tsc",
+    "build-ci": "rd dist /s /q | del tsconfig.tsbuildinfo | tsc",
     "test": "jest --verbose ./spec"
   },
   "files": [
@@ -17,7 +18,7 @@
     "url": "git+https://github.com/tom-englert/TomsToolbox.web.git"
   },
   "keywords": [
-    "tools miscellaneous"
+    "tools miscellaneous i18n"
   ],
   "author": "tom-englert",
   "license": "MIT",
@@ -39,6 +40,7 @@
     "@types/jest": "^25.2.1",
     "jest": "^26.0.1",
     "ts-jest": "^25.4.0",
+    "typedoc": "0.16.11",
     "typescript": "3.6.4"
   }
 }
