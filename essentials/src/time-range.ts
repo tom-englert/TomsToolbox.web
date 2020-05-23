@@ -1,8 +1,16 @@
+/**
+ * An interface to express time ranges.
+ */
 export interface TimeRange {
     start: number | string | Date;
     end: number | string | Date;
 }
 
+/**
+ * Checks is a value is contained in a time range.
+ * @param outer the containing time range
+ * @param inner the value to check; if inner is a time range, it must be completely inside outer
+ */
 export function isWithinTimeRange(outer: TimeRange, inner: Date | number | string | TimeRange): boolean {
     if (!inner)
         return false;
@@ -35,22 +43,27 @@ export function isWithinTimeRange(outer: TimeRange, inner: Date | number | strin
         && innerEnd <= outerEnd;
 }
 
-export function isOverlappingTimeRange(outer: TimeRange, inner: TimeRange): boolean {
-    if (!inner || !inner.start || !inner.end)
+/**
+ * Check if two time ranges overlap
+ * @param first
+ * @param second
+ */
+export function isOverlappingTimeRange(first: TimeRange, second: TimeRange): boolean {
+    if (!second || !second.start || !second.end)
         return false;
-    if (!outer || !outer.start || !outer.end)
+    if (!first || !first.start || !first.end)
         return false;
     
-    const innerStart = new Date(inner.start);
-    const innerEnd = new Date(inner.end);
-    const outerStart = new Date(outer.start);
-    const outerEnd = new Date(outer.end);
+    const innerStart = new Date(second.start);
+    const innerEnd = new Date(second.end);
+    const outerStart = new Date(first.start);
+    const outerEnd = new Date(first.end);
 
     if (innerEnd < innerStart)
         return false;
     if (outerEnd < outerStart)
         return false;
     
-    return inner.start < outer.end && inner.end > outer.start;
+    return second.start < first.end && second.end > first.start;
 }
 

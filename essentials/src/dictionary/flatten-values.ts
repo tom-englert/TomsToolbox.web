@@ -2,7 +2,7 @@ import {Dictionary} from "./dictionary";
 
 /**
  * Flattens the items of a dictionary of arrays into a single array.
- * @param items: The dictionary to flatten.
+ * @param items The dictionary to flatten.
  */
 export function flattenValues<T>(items: Dictionary<T[]>): T[] {
     const empty: T[] = [];

@@ -7,6 +7,9 @@ const defaultFormatOptions: Intl.DateTimeFormatOptions = {
   day: 'numeric'
 }
 
+/**
+ * Angular pipe to format dates using the culture from the provided [[CultureService]]
+ */
 @Pipe({
   name: 'formatDate'
 })

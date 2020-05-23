@@ -2,7 +2,8 @@ import {compare} from "./compare";
 
 /**
  * Normalizes an object by arranging it's properties in alphabetic order, so e.g. serialization always returns the same string.
- * @param item
+ * @param item The object to normalize
+ * @return The normalized object
  */
 export function normalize<T>(item: T): T {
     const itemType = typeof item;

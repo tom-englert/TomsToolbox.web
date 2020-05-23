@@ -86,10 +86,10 @@ export class IntlAdapter {
      * 2019-11-15, 2019-11-15, 'en' => 'Fri, Nov 15, 2019'
      * 2019-11-15, 2019-11-20, 'en' => 'Nov 15-20, 2019'
      * 2019-11-15, 2019-12-20, 'en' => 'Nov 15-Dec 20, 2019'
-     * @param start: the start date.
-     * @param end: the end date.
-     * @param locale: the locale used to format.
-     * @param options: the option overrides for day, month, year and weekday formats. See [DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) for details.
+     * @param start the start date.
+     * @param end the end date.
+     * @param locale the locale used to format.
+     * @param options the option overrides for day, month, year and weekday formats. See [DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) for details.
      */
     formatDateRange(start: Date | number | string, end: Date | number | string, locale?: string | string[], options?: DateTimeFormatOptions): string {
 
@@ -125,10 +125,10 @@ export class IntlAdapter {
      * Formats a time range using the specified culture settings, e.g.
      * 2019-11-15 08:20, 2019-11-15 09:40, 'de' => 'Fr., 15. Nov. 2019, 08:20-09:40'
      * 2019-11-15 08:20, 2019-11-16 09:40, 'de' => 'Fr., 15. Nov. 2019, 08:20-Sa., 16. Nov. 2019, 09:40'
-     * @param start: the start date and time.
-     * @param end: the end date and time.
-     * @param locale: the locale used to format.
-     * @param options: the option overrides for day, month, year, weekday, hour, minute and second formats. See [DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) for details.
+     * @param start the start date and time.
+     * @param end the end date and time.
+     * @param locale the locale used to format.
+     * @param options the option overrides for day, month, year, weekday, hour, minute and second formats. See [DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat) for details.
      */
     formatTimeRange(start: Date | number | string, end: Date | number | string, locale?: string | string[], options?: DateTimeFormatOptions): string {
         const defaultOptions: DateTimeFormatOptions = {
@@ -160,9 +160,9 @@ export class IntlAdapter {
 
     /**
      * Parses a numeric date string using the date rules of the specified culture.
-     * @param date: The date string to parse, e.g. 22
-     * @param locale: The locale to use for parsing.
-     * @param defaultValue: An optional default value used to fill the missing parts.
+     * @param date The date string to parse, e.g. 22
+     * @param locale The locale to use for parsing.
+     * @param defaultValue An optional default value used to fill the missing parts.
      */
     parseDate(date: string, locale: string, defaultValue?: Date): Date {
         const pattern = this.formatDateToParts('3333-11-22', locale, {

@@ -252,7 +252,7 @@ export class TimeSpan {
 
     /**
      * Parses the specified value into a TimeSpan.
-     * @param value: The value to parse
+     * @param value The value to parse
      * @return the TimeSpan, or undefined if the value can't be parsed.
      */
     static ParseExact(value: string | TimeSpan | number | undefined): TimeSpan | undefined {
@@ -285,7 +285,7 @@ export class TimeSpan {
 
     /**
      * Parses the specified value into a TimeSpan.
-     * @param value: The value to parse
+     * @param value The value to parse
      * @return the TimeSpan, or a zero TimeSpan if the value can't be parsed.
      */
     static Parse(value: string | TimeSpan | number | undefined): TimeSpan {

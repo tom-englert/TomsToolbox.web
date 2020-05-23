@@ -1,7 +1,7 @@
 import {IntlAdapter} from "./intl.adapter";
 
 /**
- * A thin wrapper around the IntlAdapter to avoid the need to pass a locale id to every method.
+ * A thin wrapper around the [[IntlAdapter]] to avoid the need to pass a locale id to every method.
  * Ensure to instantiate this as an app-wide singleton to use the same locale id everywhere
  */
 export class Culture {
