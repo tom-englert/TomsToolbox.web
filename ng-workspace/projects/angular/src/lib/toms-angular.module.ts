@@ -10,5 +10,5 @@ import {FormatDatePipe} from './format-date.pipe';
     FormatDatePipe
   ]
 })
-export class AngularModule {
+export class TomsAngularModule {
 }

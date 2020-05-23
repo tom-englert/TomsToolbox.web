@@ -13,6 +13,9 @@ const defaultFormatOptions: Intl.DateTimeFormatOptions = {
 export class FormatDatePipe implements PipeTransform {
 
   constructor(private readonly cultureService: CultureService) {
+    if (!cultureService) {
+      throw 'You must provide the CultureService';
+    }
   }
 
   transform(value: Date | string | number, options?: Intl.DateTimeFormatOptions): string {

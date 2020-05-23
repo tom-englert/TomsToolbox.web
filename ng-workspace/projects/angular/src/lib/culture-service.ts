@@ -6,6 +6,9 @@ import {IntlAdapterService} from "./intl-adapter.service";
 @Injectable({providedIn: 'root'})
 export class CultureService extends Culture {
   constructor(intlAdapter: IntlAdapterService) {
+    if (!intlAdapter) {
+      throw 'You must provide the IntlAdapterService';
+    }
     super(intlAdapter);
   }
 }
