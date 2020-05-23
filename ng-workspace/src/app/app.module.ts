@@ -3,7 +3,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {DateAdapter, MatNativeDateModule, MatRippleModule} from "@angular/material/core";
@@ -27,6 +27,7 @@ import {AngularModule, CultureService, CustomDateAdapter, IntlAdapterService} fr
     MatInputModule,
     MatNativeDateModule,
     MatRippleModule,
+    ReactiveFormsModule,
   ],
   providers: [
     IntlAdapterService,

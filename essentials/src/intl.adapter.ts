@@ -193,7 +193,11 @@ export class IntlAdapter {
             }
         }
 
-        if (isNaN(month) || month < 0) {
+        if (year < 100) {
+            year += 2000;
+        }
+
+        if (isNaN(month) || month <= 0 || month > 12) {
             if (defaultValue) {
                 month = defaultValue.getMonth() + 1;
             } else {
@@ -201,16 +205,12 @@ export class IntlAdapter {
             }
         }
 
-        if (isNaN(day) || day < 0) {
+        if (isNaN(day) || day <= 0 || day > IntlAdapter.getNumDaysInMonth(year, month - 1)) {
             if (defaultValue) {
                 day = defaultValue.getDate();
             } else {
                 return new Date(NaN);
             }
-        }
-
-        if (year < 100) {
-            year += 2000;
         }
 
         const result = new Date(year, month - 1, day);
@@ -266,11 +266,12 @@ export class IntlAdapter {
     }
 
     private overrideDefaults<T>(defaults: T, overrides: Partial<T> | undefined): T {
+        const result: any = {...defaults};
+
         if (!overrides) {
-            return defaults;
+            return result;
         }
 
-        const result: any = {...defaults};
         Object.keys(result).forEach(key => {
             // @ts-ignore
             const value: any = overrides[key];
@@ -290,5 +291,9 @@ export class IntlAdapter {
 
     private static isSameYear(day1: Date, day2: Date): boolean {
         return day1.getFullYear() === day2.getFullYear();
+    }
+
+    private static getNumDaysInMonth(year: number, month: number /* 0..11 */): number {
+        return new Date(year, month + 1, 0).getDate();
     }
 }

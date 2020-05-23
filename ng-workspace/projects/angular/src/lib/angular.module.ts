@@ -1,11 +1,14 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
+import {FormatDatePipe} from './format-date.pipe';
 
 @NgModule({
   declarations: [
+    FormatDatePipe
   ],
-  imports: [
-  ],
+  imports: [],
   exports: [
+    FormatDatePipe
   ]
 })
-export class AngularModule { }
+export class AngularModule {
+}

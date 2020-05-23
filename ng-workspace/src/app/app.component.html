@@ -2,22 +2,26 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
-  Today is {{ today }}, the browsers locale is {{ locale }}
+  Today is {{ today | formatDate }}, the browsers locale is {{ locale }}
 </div>
-<div style="margin: 20px">
+<div style="margin: 20px" [formGroup]="formGroup">
   <div>
     <mat-form-field>
       <mat-label>Input a number</mat-label>
-      <input matInput type="number">
+      <input matInput type="number" step="0.1" formControlName="number">
+      <mat-error *ngIf="formGroup.controls.number.invalid">Enter a valid number</mat-error>
     </mat-form-field>
+    <span>&nbsp;&nbsp;You have typed: {{formGroup.controls.number.value}}</span>
   </div>
   <div>
     <mat-form-field>
       <mat-label>Select a date</mat-label>
-      <input matInput [matDatepicker]="picker1">
+      <input matInput [matDatepicker]="picker1" formControlName="date">
       <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
       <mat-datepicker #picker1></mat-datepicker>
+      <mat-error *ngIf="formGroup.controls.date.invalid">Enter a valid date</mat-error>
     </mat-form-field>
+    <span>&nbsp;&nbsp;You have selected: {{ formGroup.controls.date.value | formatDate: ({day:'numeric', month:'long', year:'numeric', weekday:'short'}) }}</span>
   </div>
 </div>
 
