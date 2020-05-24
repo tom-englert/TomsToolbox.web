@@ -10,14 +10,14 @@ import {DateAdapter, MatNativeDateModule, MatRippleModule} from "@angular/materi
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 
-import {AngularModule, CultureService, CustomDateAdapter, IntlAdapterService} from "angular";
+import {TomsAngularModule, CultureService, CustomDateAdapter, IntlAdapterService} from "@toms-toolbox/angular";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    AngularModule,
+    TomsAngularModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

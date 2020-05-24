@@ -19,14 +19,14 @@
       "dom"
     ],
     "paths": {
-      "angular": [
+      "@toms-toolbox/angular": [
         "dist/angular"
+      ],
+      "@toms-toolbox/angular/*": [
+        "dist/angular/*"
       ],
       "@toms-toolbox/essentials": [
         "../essentials/dist"
-      ],
-      "angular/*": [
-        "dist/angular/*"
       ]
     }
   }

@@ -1,6 +1,4 @@
 import {TestBed, async} from '@angular/core/testing';
-import {AppComponent} from './app.component';
-import {AngularModule, CultureService, CustomDateAdapter, IntlAdapterService} from "angular";
 import {BrowserModule} from "@angular/platform-browser";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -11,6 +9,9 @@ import {DateAdapter, MatNativeDateModule, MatRippleModule} from "@angular/materi
 import {CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID} from "@angular/core";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 
+import {AppComponent} from './app.component';
+import {TomsAngularModule, CultureService, CustomDateAdapter, IntlAdapterService} from "@toms-toolbox/angular";
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -18,7 +19,7 @@ describe('AppComponent', () => {
         AppComponent
       ],
       imports: [
-        AngularModule,
+        TomsAngularModule,
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,

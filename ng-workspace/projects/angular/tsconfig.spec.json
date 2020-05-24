@@ -5,12 +5,7 @@
     "types": [
       "jasmine",
       "node"
-    ],
-    "paths": {
-      "@toms-toolbox/essentials": [
-        "../essentials/dist"
-      ]
-    }
+    ]
   },
   "files": [
     "src/test.ts"

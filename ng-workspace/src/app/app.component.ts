@@ -1,7 +1,5 @@
 import {Component} from '@angular/core';
-import {IntlAdapter} from "@toms-toolbox/essentials";
-import {DateAdapter} from "@angular/material/core";
-import {CultureService, IntlAdapterService} from "angular";
+import {CultureService} from "@toms-toolbox/angular";
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
