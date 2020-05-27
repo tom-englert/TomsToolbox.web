@@ -4,11 +4,10 @@
     => fix of parseDate: now culture specific
  */
 
-import {Inject, Injectable, Optional} from '@angular/core';
-import {DateAdapter} from '@angular/material';
+import {Inject, Injectable, LOCALE_ID, Optional} from '@angular/core';
 import {Platform} from '@angular/cdk/platform';
-import {MAT_DATE_LOCALE} from "@angular/material/core";
 import {IntlAdapterService} from "./intl-adapter.service";
+import {Observable, Subject} from "rxjs";
 
 /**
  * Matches strings that have the form of a valid RFC 3339 string
@@ -30,14 +29,18 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
 
 @Injectable({providedIn: 'root'})
 /** Adapts the native JS Date for use with cdk-based components that work with dates. */
-export class CustomDateAdapter extends DateAdapter<Date> {
+export class CustomDateAdapter {
+  /** The locale to use for all dates. */
+  protected locale: any;
+  /** A stream that emits when the locale changes. */
+  get localeChanges(): Observable<void> { return this._localeChanges; }
+  protected _localeChanges = new Subject<void>();
+
   /** Whether to clamp the date between 1 and 9999 to avoid IE and Edge errors. */
   private readonly _clampDate: boolean;
 
-  constructor(private readonly intl: IntlAdapterService, @Optional() @Inject(MAT_DATE_LOCALE) locale: string, platform: Platform) {
-    super();
-    super.setLocale(locale);
-
+  constructor(private readonly intl: IntlAdapterService, @Inject(LOCALE_ID) locale: string, platform: Platform) {
+    this.setLocale(locale);
     this._clampDate = platform.TRIDENT || platform.EDGE;
   }
 
@@ -190,7 +193,10 @@ export class CustomDateAdapter extends DateAdapter<Date> {
         }
       }
     }
-    return super.deserialize(value);
+    if (value == null || this.isDateInstance(value) && this.isValid(value)) {
+      return value;
+    }
+    return this.invalid();
   }
 
   isDateInstance(obj: any) {
@@ -203,6 +209,65 @@ export class CustomDateAdapter extends DateAdapter<Date> {
 
   invalid(): Date {
     return new Date(NaN);
+  }
+
+  /**
+   * Sets the locale used for all dates.
+   * @param locale The new locale.
+   */
+  setLocale(locale: any) {
+    this.locale = locale;
+    this._localeChanges.next();
+  }
+
+  /**
+   * Compares two dates.
+   * @param first The first date to compare.
+   * @param second The second date to compare.
+   * @returns 0 if the dates are equal, a number less than 0 if the first date is earlier,
+   *     a number greater than 0 if the first date is later.
+   */
+  compareDate(first: Date, second: Date): number {
+    return this.getYear(first) - this.getYear(second) ||
+      this.getMonth(first) - this.getMonth(second) ||
+      this.getDate(first) - this.getDate(second);
+  }
+
+  /**
+   * Checks if two dates are equal.
+   * @param first The first date to check.
+   * @param second The second date to check.
+   * @returns Whether the two dates are equal.
+   *     Null dates are considered equal to other null dates.
+   */
+  sameDate(first: Date | null, second: Date | null): boolean {
+    if (first && second) {
+      let firstValid = this.isValid(first);
+      let secondValid = this.isValid(second);
+      if (firstValid && secondValid) {
+        return !this.compareDate(first, second);
+      }
+      return firstValid == secondValid;
+    }
+    return first == second;
+  }
+
+  /**
+   * Clamp the given date between min and max dates.
+   * @param date The date to clamp.
+   * @param min The minimum value to allow. If null or omitted no min is enforced.
+   * @param max The maximum value to allow. If null or omitted no max is enforced.
+   * @returns `min` if `date` is less than `min`, `max` if date is greater than `max`,
+   *     otherwise `date`.
+   */
+  clampDate(date: Date, min?: Date | null, max?: Date | null): Date {
+    if (min && this.compareDate(date, min) < 0) {
+      return min;
+    }
+    if (max && this.compareDate(date, max) > 0) {
+      return max;
+    }
+    return date;
   }
 
   /** Creates a date but allows the month and date to overflow. */
