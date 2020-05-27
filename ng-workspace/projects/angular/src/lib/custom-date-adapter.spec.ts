@@ -1,7 +1,5 @@
-//import {Platform} from '@angular/cdk/platform';
 import {CustomDateAdapter} from "./custom-date-adapter";
 import {IntlAdapter} from "@toms-toolbox/essentials";
-import {Platform} from "@angular/cdk/platform";
 
 describe('CustomDateAdapter', () => {
   const intl = new IntlAdapter()
@@ -10,7 +8,7 @@ describe('CustomDateAdapter', () => {
   let assertValidDate: (d: Date | null, valid: boolean) => void;
 
   beforeEach(() => {
-      adapter = new CustomDateAdapter(intl, 'en-us', <Platform>{});
+      adapter = new CustomDateAdapter(intl, 'en-us');
       assertValidDate = (d: Date | null, valid: boolean) => {
         expect(adapter.isDateInstance(d)).not.toBeNull(`Expected ${d} to be a date instance`);
         expect(adapter.isValid(d!)).toBe(valid,
