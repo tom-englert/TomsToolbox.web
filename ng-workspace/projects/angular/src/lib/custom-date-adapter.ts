@@ -4,8 +4,7 @@
     => fix of parseDate: now culture specific
  */
 
-import {Inject, Injectable, LOCALE_ID, Optional} from '@angular/core';
-import {Platform} from '@angular/cdk/platform';
+import {Inject, Injectable, LOCALE_ID} from '@angular/core';
 import {IntlAdapterService} from "./intl-adapter.service";
 import {Observable, Subject} from "rxjs";
 
@@ -32,16 +31,20 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
 export class CustomDateAdapter {
   /** The locale to use for all dates. */
   protected locale: any;
+
   /** A stream that emits when the locale changes. */
-  get localeChanges(): Observable<void> { return this._localeChanges; }
+  get localeChanges(): Observable<void> {
+    return this._localeChanges;
+  }
+
   protected _localeChanges = new Subject<void>();
 
   /** Whether to clamp the date between 1 and 9999 to avoid IE and Edge errors. */
   private readonly _clampDate: boolean;
 
-  constructor(private readonly intl: IntlAdapterService, @Inject(LOCALE_ID) locale: string, platform: Platform) {
+  constructor(private readonly intl: IntlAdapterService, @Inject(LOCALE_ID) locale: string) {
     this.setLocale(locale);
-    this._clampDate = platform.TRIDENT || platform.EDGE;
+    this._clampDate = true;
   }
 
   getYear(date: Date): number {
