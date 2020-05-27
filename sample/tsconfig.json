@@ -1,9 +1,5 @@
 {
   "compileOnSave": false,
-  "references": [
-    { "path": "../essentials/tsconfig.json" },
-    { "path": "../angular/tsconfig.json" }
-  ],
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
@@ -21,11 +17,7 @@
     "lib": [
       "es2018",
       "dom"
-    ],
-    "paths": {
-      "@tom-toolbox/essentials": ["../essentials/dist"],
-      "@tom-toolbox/angular": ["../angular/dist"]
-    }
+    ]
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {IntlAdapterService} from "./intl-adapter.service";
 
 @NgModule({
   declarations: [
@@ -14,7 +13,6 @@ import {IntlAdapterService} from "./intl-adapter.service";
     AppRoutingModule
   ],
   providers: [
-    IntlAdapterService
   ],
   bootstrap: [AppComponent]
 })
