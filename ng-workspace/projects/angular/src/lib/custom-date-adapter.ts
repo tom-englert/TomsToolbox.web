@@ -1,9 +1,3 @@
-/*
-    adaption of https://github.com/angular/components/blob/master/src/material/core/datetime/native-date-adapter.ts
-    => caching of Intl
-    => fix of parseDate: now culture specific
- */
-
 import {Inject, Injectable, LOCALE_ID} from '@angular/core';
 import {IntlAdapterService} from "./intl-adapter.service";
 import {Observable, Subject} from "rxjs";
@@ -27,7 +21,12 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
 }
 
 @Injectable({providedIn: 'root'})
-/** Adapts the native JS Date for use with cdk-based components that work with dates. */
+/**
+  *  adaption of https://github.com/angular/components/blob/master/src/material/core/datetime/native-date-adapter.ts
+  *  - caching of Intl
+  *  - fix of parseDate: now culture specific
+  *  - full implementation without deriving from DateAdapter<Date>, to ensure compatibility with all angular versions.
+  */
 export class CustomDateAdapter {
   /** The locale to use for all dates. */
   protected locale: any;
