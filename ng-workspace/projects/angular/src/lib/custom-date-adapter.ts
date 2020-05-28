@@ -20,13 +20,13 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
   return valuesArray;
 }
 
-@Injectable({providedIn: 'root'})
 /**
-  *  adaption of https://github.com/angular/components/blob/master/src/material/core/datetime/native-date-adapter.ts
-  *  - caching of Intl
-  *  - fix of parseDate: now culture specific
+  *  Adaption of https://github.com/angular/components/blob/master/src/material/core/datetime/native-date-adapter.ts
+  *  - caching of Intl objects to improve performance
+  *  - parseDate is culture aware
   *  - full implementation without deriving from DateAdapter<Date>, to ensure compatibility with all angular versions.
   */
+@Injectable({providedIn: 'root'})
 export class CustomDateAdapter {
   /** The locale to use for all dates. */
   protected locale: any;
@@ -41,6 +41,11 @@ export class CustomDateAdapter {
   /** Whether to clamp the date between 1 and 9999 to avoid IE and Edge errors. */
   private readonly _clampDate: boolean;
 
+  /**
+   * Creates a new CustomDateAdapter
+   * @param intl (injected) the [[IntlAdapterService]]; make sure to add this to your global providers in the app or core module.
+   * @param locale (injected) the locale to use for formatting.
+   */
   constructor(private readonly intl: IntlAdapterService, @Inject(LOCALE_ID) locale: string) {
     this.setLocale(locale);
     this._clampDate = true;
