@@ -1,6 +1,6 @@
 {
   "name": "@toms-toolbox/angular",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A set of angular classes to ease every days web development tasks",
   "repository": {
     "type": "git",
@@ -19,6 +19,6 @@
     "@angular/common": ">=7.2.0",
     "@angular/core": ">=7.2.0",
     "@angular/material": ">=7.2.0",
-    "@toms-toolbox/essentials": ">=1.0.2"
+    "@toms-toolbox/essentials": ">=1.0.5"
   }
 }
