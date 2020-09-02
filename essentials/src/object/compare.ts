@@ -15,7 +15,10 @@ export function compare<T>(left: T, right: T): number {
  * @return `true` if both sequences are equal.
  */
 export function isSequenceEqual<T>(left: any[], right: any[], comparer: (a: any, b: any) => boolean = isContentEqual) {
-    return Array.isArray(left) && left.every((value, index) => comparer(value, right[index]));
+    return Array.isArray(left)
+        && Array.isArray(right)
+        && left.length == right.length
+        && left.every((value, index) => comparer(value, right[index]));
 }
 
 /**
@@ -42,10 +45,13 @@ export function isContentEqual(left: any, right: any): boolean {
             return isSequenceEqual(left, right);
         }
 
-        return Object.entries(left).every(entry => {
-            const [key, value] = entry;
-            return isContentEqual(value, right[key]);
-        });
+        const leftEntries = Object.entries(left);
+
+        return leftEntries.length == Object.keys(right).length
+            && leftEntries.every(entry => {
+                const [key, value] = entry;
+                return isContentEqual(value, right[key]);
+            });
     }
 
     return false;
