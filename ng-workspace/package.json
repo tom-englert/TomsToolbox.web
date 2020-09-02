@@ -9,7 +9,7 @@
     "test-ci": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "doc": "npx typedoc --out \"../docs/angular projects/angular/src\" --exclude \"**/*+(index|.spec|.e2e).ts\""
+    "doc": "npx typedoc --out ../docs/angular projects/angular/src/lib"
   },
   "private": true,
   "dependencies": {

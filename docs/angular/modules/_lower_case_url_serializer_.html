@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;test&quot; | @toms-toolbox/angular</title>
+	<title>&quot;lower-case-url-serializer&quot; | @toms-toolbox/angular</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_test_.html">&quot;test&quot;</a>
+					<a href="_lower_case_url_serializer_.html">&quot;lower-case-url-serializer&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;test&quot;</h1>
+			<h1>External module &quot;lower-case-url-serializer&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -70,37 +70,55 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Variables</h3>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_test_.html#context" class="tsd-kind-icon">context</a></li>
-								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_test_.html#require" class="tsd-kind-icon">require</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_lower_case_url_serializer_.lowercaseurlserializer.html" class="tsd-kind-icon">Lower<wbr>Case<wbr>Url<wbr>Serializer</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_lower_case_url_serializer_.html#makepathlowercase" class="tsd-kind-icon">make<wbr>Path<wbr>Lower<wbr>Case</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Variables</h2>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-					<a name="context" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> context</h3>
-					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> = require.context(&#x27;./&#x27;, true, /\.spec\.ts$/)</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/tom-englert/TomsToolbox.web/blob/738a720/ng-workspace/projects/angular/src/test.ts#L20">ng-workspace/projects/angular/src/test.ts:20</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-					<a name="require" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> require</h3>
-					<div class="tsd-signature tsd-kind-icon">require<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/tom-englert/TomsToolbox.web/blob/738a720/ng-workspace/projects/angular/src/test.ts#L12">ng-workspace/projects/angular/src/test.ts:12</a></li>
-						</ul>
-					</aside>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="makepathlowercase" class="tsd-anchor"></a>
+					<h3>make<wbr>Path<wbr>Lower<wbr>Case</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">make<wbr>Path<wbr>Lower<wbr>Case<span class="tsd-signature-symbol">(</span>segmentGroup<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">UrlSegmentGroup</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/tom-englert/TomsToolbox.web/blob/e1bb78f/ng-workspace/projects/angular/src/lib/lower-case-url-serializer.ts#L9">ng-workspace/projects/angular/src/lib/lower-case-url-serializer.ts:9</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Recursive walks all segments of the segment group and converts the path of each segment to lower case.
+										Useful to build e.g. an url serializer that converts the path to lower case while not touching the
+									query or fragment part.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>segmentGroup: <span class="tsd-signature-type">UrlSegmentGroup</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The segment group to convert.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -111,53 +129,35 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_lib_culture_service_.html">&quot;lib/culture-<wbr>service&quot;</a>
+						<a href="_culture_service_.html">&quot;culture-<wbr>service&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_lib_custom_date_adapter_.html">&quot;lib/custom-<wbr>date-<wbr>adapter&quot;</a>
+						<a href="_custom_date_adapter_.html">&quot;custom-<wbr>date-<wbr>adapter&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_lib_custom_date_adapter_spec_.html">&quot;lib/custom-<wbr>date-<wbr>adapter.spec&quot;</a>
+						<a href="_format_date_pipe_.html">&quot;format-<wbr>date.pipe&quot;</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_lib_format_date_pipe_.html">&quot;lib/format-<wbr>date.pipe&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_lib_format_date_pipe_spec_.html">&quot;lib/format-<wbr>date.pipe.spec&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_lib_intl_adapter_service_.html">&quot;lib/intl-<wbr>adapter.service&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_lib_lower_case_url_serializer_.html">&quot;lib/lower-<wbr>case-<wbr>url-<wbr>serializer&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_lib_lower_case_url_serializer_spec_.html">&quot;lib/lower-<wbr>case-<wbr>url-<wbr>serializer.spec&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_lib_observable_property_.html">&quot;lib/observable-<wbr>property&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_lib_observable_property_spec_.html">&quot;lib/observable-<wbr>property.spec&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_lib_toms_angular_module_.html">&quot;lib/toms-<wbr>angular.module&quot;</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_public_api_.html">&quot;public-<wbr>api&quot;</a>
+						<a href="_intl_adapter_service_.html">&quot;intl-<wbr>adapter.service&quot;</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_test_.html">&quot;test&quot;</a>
+						<a href="_lower_case_url_serializer_.html">&quot;lower-<wbr>case-<wbr>url-<wbr>serializer&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_observable_property_.html">&quot;observable-<wbr>property&quot;</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_toms_angular_module_.html">&quot;toms-<wbr>angular.module&quot;</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_test_.html#context" class="tsd-kind-icon">context</a>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_lower_case_url_serializer_.lowercaseurlserializer.html" class="tsd-kind-icon">Lower<wbr>Case<wbr>Url<wbr>Serializer</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
-						<a href="_test_.html#require" class="tsd-kind-icon">require</a>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_lower_case_url_serializer_.html#makepathlowercase" class="tsd-kind-icon">make<wbr>Path<wbr>Lower<wbr>Case</a>
 					</li>
 				</ul>
 			</nav>
