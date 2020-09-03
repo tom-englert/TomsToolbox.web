@@ -1,15 +1,15 @@
-import {ObservableProperty} from "./observable-property";
+import {TwoWayBinding} from "./observable-property";
 import {EventEmitter, Input, Output} from "@angular/core";
 
 class Component {
-  @ObservableProperty()
+  @TwoWayBinding()
   @Input()
   someProperty: string;
   @Output()
   somePropertyChange: EventEmitter<string>;
 }
 
-describe('ObservableProperty', () => {
+describe('TwoWayBinding', () => {
   it('Emits events only on changes.', () => {
     const target = new Component();
     const results: string[] = [];

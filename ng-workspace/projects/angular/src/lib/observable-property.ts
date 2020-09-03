@@ -42,7 +42,8 @@ import {isContentEqual} from "@toms-toolbox/essentials";
  * ```
  * @param comparer The comparer used to detect changes; if the new object is the same as the old object, no event will be emitted. If no comparer is specified, `@toms-toolbox/essentials/isContentEqual`  is used. Set the comparer to `undefined` to omit comparison.
  */
-export function ObservableProperty(comparer: (a: any, b: any) => boolean = isContentEqual) {
+
+export function TwoWayBinding(comparer: (a: any, b: any) => boolean = isContentEqual) {
   return (target: any, propertyKey: string, descriptor?: PropertyDescriptor) => {
     if (descriptor || !propertyKey) {
       throw 'Observable can only be applied to fields';
@@ -73,4 +74,9 @@ export function ObservableProperty(comparer: (a: any, b: any) => boolean = isCon
     Object.defineProperty(target, eventKey, eventDescriptor);
   };
 }
+
+/**
+ * @deprecated Use TwoWayBinding instead.
+ */
+export const ObservableProperty = TwoWayBinding;
 
