@@ -1,4 +1,4 @@
-import {TwoWayBinding} from "./observable-property";
+import {TwoWayBinding} from "./two-way-binding";
 import {EventEmitter, Input, Output} from "@angular/core";
 
 class Component {

@@ -4,7 +4,7 @@ import {isContentEqual} from "@toms-toolbox/essentials";
 /**
  * A typescript decorator that injects the logic to link a property with it's change event.
  * - use a simple field for the input.
- * - add the `ObservableProperty` decorator before the input decorator.
+ * - add the `TwoWayBinding` decorator before the input decorator.
  * - do not initialize the output change event
  *
  * So instead of this bulky code:
@@ -33,7 +33,7 @@ import {isContentEqual} from "@toms-toolbox/essentials";
  *
  * ```ts
  * //-------------------------------------------------
- * @ObservableProperty()
+ * @TwoWayBinding()
  * @Input()
  * someProperty: string;
  * @Output()
