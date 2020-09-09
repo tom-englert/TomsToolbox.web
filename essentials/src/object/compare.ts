@@ -45,13 +45,15 @@ export function isContentEqual(left: any, right: any): boolean {
             return isSequenceEqual(left, right);
         }
 
-        const leftEntries = Object.entries(left);
+        let length = 0;
+        for (let key in left) {
+            length += 1;
+            if (!isContentEqual(left[key], right[key])) {
+                return false;
+            }
+        }
 
-        return leftEntries.length == Object.keys(right).length
-            && leftEntries.every(entry => {
-                const [key, value] = entry;
-                return isContentEqual(value, right[key]);
-            });
+        return length === Object.keys(right).length;
     }
 
     return false;

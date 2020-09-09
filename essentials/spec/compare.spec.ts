@@ -19,7 +19,7 @@ describe('isContentEqual', () => {
 
         expect(isContentEqual(left, right)).toBeFalsy();
     });
-    it('should detect similar arrays', () => {
+    it('should treat similar values as equal', () => {
         const left = [1, 2, "3"];
         const right = [1, 2, 3];
 
@@ -30,6 +30,18 @@ describe('isContentEqual', () => {
         const right = {c: {d: [1, 2, 3]}, b: "test", a: "2"};
 
         expect(isContentEqual(left, right)).toBeFalsy();
+    });
+    it('should treat null as not equal to something', () => {
+        const left = {c: {d: [1, 2, null]}, b: "test", a: "2"};
+        const right = {c: {d: [1, 2, 3]}, b: "test", a: "2"};
+
+        expect(isContentEqual(left, right)).toBeFalsy();
+    });
+    it('should treat null and undefined as equal', () => {
+        const left = {c: {d: [1, 2, null]}, b: "test", a: "2"};
+        const right = {c: {d: [1, 2, undefined]}, b: "test", a: "2"};
+
+        expect(isContentEqual(left, right)).toBeTruthy();
     });
 });
 
