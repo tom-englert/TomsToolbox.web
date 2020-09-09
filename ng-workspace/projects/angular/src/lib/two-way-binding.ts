@@ -2,7 +2,8 @@ import {EventEmitter} from '@angular/core';
 import {isContentEqual} from "@toms-toolbox/essentials";
 
 /**
- * A typescript decorator that injects the logic to link a property with it's change event.
+ * An [AOP Aspect](https://en.wikipedia.org/wiki/Aspect-oriented_programming) to generate the code needed for two-way binding in Angular controls.
+ * Implemented as a typescript decorator that injects the logic to link a property with it's change event.
  * - use a simple field for the input.
  * - add the `TwoWayBinding` decorator before the input decorator.
  * - do not initialize the output change event
