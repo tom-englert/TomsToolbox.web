@@ -75,22 +75,22 @@ describe('formatTimeRange', () => {
     const i18N = new IntlAdapter();
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-15 09:40'), 'en')).toBe('Fri, Nov 15, 2019, 8:20 AM\u20139:40 AM');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-15 09:40'), 'de')).toBe('Fr., 15. Nov. 2019, 08:20\u201309:40');
-    expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-15 09:40'), 'fr')).toBe('ven. 15 nov. 2019 à 08:20\u201309:40');
+    expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-15 09:40'), 'fr')).toBe('ven. 15 nov. 2019, 08:20\u201309:40');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-15 09:40'), 'ja')).toBe('2019年11月15日(金) 8:20\u20139:40');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-15 19:40'), 'en')).toBe('Fri, Nov 15, 2019, 8:20 AM\u20137:40 PM');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-15 19:40'), 'de')).toBe('Fr., 15. Nov. 2019, 08:20\u201319:40');
-    expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-15 19:40'), 'fr')).toBe('ven. 15 nov. 2019 à 08:20\u201319:40');
+    expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-15 19:40'), 'fr')).toBe('ven. 15 nov. 2019, 08:20\u201319:40');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-15 19:40'), 'ja')).toBe('2019年11月15日(金) 8:20\u201319:40');
   });
   it('formats time ranges on different days correctly', () => {
     const i18N = new IntlAdapter();
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 09:40'), 'en')).toBe('Fri, Nov 15, 2019, 8:20 AM\u2013Sat, Nov 16, 2019, 9:40 AM');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 09:40'), 'de')).toBe('Fr., 15. Nov. 2019, 08:20\u2013Sa., 16. Nov. 2019, 09:40');
-    expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 09:40'), 'fr')).toBe('ven. 15 nov. 2019 à 08:20\u2013sam. 16 nov. 2019 à 09:40');
+    expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 09:40'), 'fr')).toBe('ven. 15 nov. 2019, 08:20\u2013sam. 16 nov. 2019, 09:40');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 09:40'), 'ja')).toBe('2019年11月15日(金) 8:20\u20132019年11月16日(土) 9:40');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 19:40'), 'en')).toBe('Fri, Nov 15, 2019, 8:20 AM\u2013Sat, Nov 16, 2019, 7:40 PM');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 19:40'), 'de')).toBe('Fr., 15. Nov. 2019, 08:20\u2013Sa., 16. Nov. 2019, 19:40');
-    expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 19:40'), 'fr')).toBe('ven. 15 nov. 2019 à 08:20\u2013sam. 16 nov. 2019 à 19:40');
+    expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 19:40'), 'fr')).toBe('ven. 15 nov. 2019, 08:20\u2013sam. 16 nov. 2019, 19:40');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 19:40'), 'ja')).toBe('2019年11月15日(金) 8:20\u20132019年11月16日(土) 19:40');
   });
   it('formats time ranges with options correctly', () => {
@@ -99,11 +99,11 @@ describe('formatTimeRange', () => {
 
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 09:40'), 'en', options)).toBe('Fri, Nov 15, 2019, 8:20:00 AM\u2013Sat, Nov 16, 2019, 9:40:00 AM');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 09:40'), 'de', options)).toBe('Fr., 15. Nov. 2019, 08:20:00\u2013Sa., 16. Nov. 2019, 09:40:00');
-    expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 09:40'), 'fr', options)).toBe('ven. 15 nov. 2019 à 08:20:00\u2013sam. 16 nov. 2019 à 09:40:00');
+    expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 09:40'), 'fr', options)).toBe('ven. 15 nov. 2019, 08:20:00\u2013sam. 16 nov. 2019, 09:40:00');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 09:40'), 'ja', options)).toBe('2019年11月15日(金) 8:20:00\u20132019年11月16日(土) 9:40:00');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 19:40'), 'en', options)).toBe('Fri, Nov 15, 2019, 8:20:00 AM\u2013Sat, Nov 16, 2019, 7:40:00 PM');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 19:40'), 'de', options)).toBe('Fr., 15. Nov. 2019, 08:20:00\u2013Sa., 16. Nov. 2019, 19:40:00');
-    expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 19:40'), 'fr', options)).toBe('ven. 15 nov. 2019 à 08:20:00\u2013sam. 16 nov. 2019 à 19:40:00');
+    expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 19:40'), 'fr', options)).toBe('ven. 15 nov. 2019, 08:20:00\u2013sam. 16 nov. 2019, 19:40:00');
     expect(i18N.formatTimeRange(Date.parse('2019-11-15 08:20'), Date.parse('2019-11-16 19:40'), 'ja', options)).toBe('2019年11月15日(金) 8:20:00\u20132019年11月16日(土) 19:40:00');
   });
 });
