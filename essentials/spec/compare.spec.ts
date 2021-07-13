@@ -43,6 +43,24 @@ describe('isContentEqual', () => {
 
         expect(isContentEqual(left, right)).toBeTruthy();
     });
+    it('should treat similar arrays as equal', () => {
+        const left = [{date: new Date('2021-01-01')}, {date: new Date('2021-01-02')}, {date: new Date('2021-01-03')}];
+        const right = [{date: new Date('2021-01-01')}, {date: new Date('2021-01-02')}, {date: new Date('2021-01-03')}];
+
+        expect(isContentEqual(left, right)).toBeTruthy();
+    });
+    it('should treat different arrays as different', () => {
+        const left = [{date: new Date('2021-01-01')}, {date: new Date('2021-01-02')}, {date: new Date('2021-01-03')}];
+        const right = [{date: new Date('2021-01-04')}, {date: new Date('2021-01-05')}, {date: new Date('2021-01-06')}];
+
+        expect(isContentEqual(left, right)).toBeFalsy();
+    });
+    it('should treat empty objects as equal', () => {
+        expect(isContentEqual({}, {})).toBeTruthy();
+    });
+    it('should treat different objects as different', () => {
+        expect(isContentEqual({}, new Date())).toBeFalsy();
+    });
 });
 
 describe('isSequenceEqual', () => {

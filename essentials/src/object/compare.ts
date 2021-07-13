@@ -53,7 +53,12 @@ export function isContentEqual(left: any, right: any): boolean {
             }
         }
 
-        return length === Object.keys(right).length;
+        let rightKeys = Object.keys(right);
+
+        if (length !== rightKeys.length)
+            return false;
+
+        return left.toString() === right.toString();
     }
 
     return false;
