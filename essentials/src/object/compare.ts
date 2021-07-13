@@ -58,7 +58,10 @@ export function isContentEqual(left: any, right: any): boolean {
         if (length !== rightKeys.length)
             return false;
 
-        return left.toString() === right.toString();
+        if (length === 0)
+            return left.toString() === right.toString();
+
+        return true;
     }
 
     return false;
