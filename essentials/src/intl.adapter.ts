@@ -97,7 +97,7 @@ export class IntlAdapter {
         end = new Date(end);
 
         if (IntlAdapter.isSameDay(start, end)) {
-            const defaultOptions = {
+            const defaultOptions: DateTimeFormatOptions = {
                 day: 'numeric',
                 month: 'short',
                 year: 'numeric',
