@@ -7,7 +7,7 @@ import {compare} from "./compare";
  */
 export function normalize<T>(item: T): T {
     const itemType = typeof item;
-    if (itemType === 'object' && !Array.isArray(item)) {
+    if (itemType === 'object' && !Array.isArray(item) && item !== null) {
         return Object.entries(item)
             .sort((a, b) => compare(a[0], b[0]))
             .reduce((acc, entry) => {

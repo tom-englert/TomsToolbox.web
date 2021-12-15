@@ -31,6 +31,30 @@ describe('normalize', () => {
         }
         expect(JSON.stringify(normalize(source), null, 0)).toBe('{"a":1,"b":{"x":"test","y":[3,2,1],"z":5},"c":3}');
     });
+    it('should normalize objects with undefined values', () => {
+        const source = {
+            a: 1,
+            c: 3,
+            b: {
+                z: undefined,
+                x: "test",
+                y: [3, 2, 1]
+            }
+        }
+        expect(JSON.stringify(normalize(source), null, 0)).toBe('{"a":1,"b":{"x":"test","y":[3,2,1]},"c":3}');
+    });
+    it('should normalize objects with null values', () => {
+        const source = {
+            a: 1,
+            c: 3,
+            b: {
+                z: null,
+                x: "test",
+                y: [3, 2, 1]
+            }
+        }
+        expect(JSON.stringify(normalize(source), null, 0)).toBe('{"a":1,"b":{"x":"test","y":[3,2,1],"z":null},"c":3}');
+    });
 });
 
 describe('ObjectCache', () => {
